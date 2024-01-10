@@ -353,6 +353,8 @@ prevenind&nbsp;scurgerile&nbsp;de&nbsp;memorie&nbsp;și&nbsp;asigurând&nbsp;o&n
 
 <dl><dt><a name="Solitaire-on_draw"><strong>on_draw</strong></a>(self)</dt><dd><tt>Desenează&nbsp;fereastra&nbsp;jocului.</tt></dd></dl>
 
+<dl><dt><a name="Solitaire-on_key_press"><strong>on_key_press</strong></a>(self, symbol: int, modifiers: int)</dt><dd><tt>Restarteaza&nbsp;jocul</tt></dd></dl>
+
 <dl><dt><a name="Solitaire-on_mouse_motion"><strong>on_mouse_motion</strong></a>(self, x: float, y: float, dx: float, dy: float)</dt><dd><tt>Gestionează&nbsp;evenimentele&nbsp;de&nbsp;mișcare&nbsp;a&nbsp;mouse-ului&nbsp;în&nbsp;timpul&nbsp;jocului.<br>
 Această&nbsp;funcție&nbsp;răspunde&nbsp;activ&nbsp;la&nbsp;mișcarea&nbsp;mouse-ului&nbsp;de&nbsp;către&nbsp;utilizator,<br>
 în&nbsp;special&nbsp;în&nbsp;timpul&nbsp;tragerii&nbsp;cărților.</tt></dd></dl>
@@ -373,8 +375,6 @@ ierarhia&nbsp;vizuală&nbsp;corectă.&nbsp;Susține&nbsp;vizualizarea&nbsp;fluen
 interacțiunilor&nbsp;cu&nbsp;cărțile&nbsp;în&nbsp;joc.</tt></dd></dl>
 
 <dl><dt><a name="Solitaire-remove_card_from_pile"><strong>remove_card_from_pile</strong></a>(self, card)</dt><dd><tt>Elimină&nbsp;o&nbsp;carte&nbsp;din&nbsp;teancul&nbsp;său&nbsp;curent.</tt></dd></dl>
-
-<dl><dt><a name="Solitaire-restart"><strong>restart</strong></a>(self, symbol: int)</dt><dd><tt>Restarteaza&nbsp;jocul</tt></dd></dl>
 
 <dl><dt><a name="Solitaire-setup"><strong>setup</strong></a>(self)</dt><dd><tt>Configurează&nbsp;starea&nbsp;inițială&nbsp;a&nbsp;jocului,&nbsp;punând&nbsp;în&nbsp;ordine&nbsp;mediul&nbsp;de&nbsp;joc<br>
 <a href="#Solitaire">Solitaire</a>&nbsp;prin&nbsp;crearea&nbsp;și&nbsp;aranjarea&nbsp;diverselor&nbsp;elemente.&nbsp;Acest&nbsp;lucru<br>
@@ -440,12 +440,6 @@ Simply&nbsp;call&nbsp;``show_view``&nbsp;again.</tt></dd></dl>
 <dl><dt><a name="Solitaire-maximize"><strong>maximize</strong></a>(self)</dt><dd><tt>Maximize&nbsp;&nbsp;the&nbsp;window.</tt></dd></dl>
 
 <dl><dt><a name="Solitaire-minimize"><strong>minimize</strong></a>(self)</dt><dd><tt>Minimize&nbsp;the&nbsp;window.</tt></dd></dl>
-
-<dl><dt><a name="Solitaire-on_key_press"><strong>on_key_press</strong></a>(self, symbol: int, modifiers: int)</dt><dd><tt>Override&nbsp;this&nbsp;function&nbsp;to&nbsp;add&nbsp;key&nbsp;press&nbsp;functionality.<br>
-&nbsp;<br>
-:param&nbsp;int&nbsp;symbol:&nbsp;Key&nbsp;that&nbsp;was&nbsp;hit<br>
-:param&nbsp;int&nbsp;modifiers:&nbsp;Bitwise&nbsp;'and'&nbsp;of&nbsp;all&nbsp;modifiers&nbsp;(shift,&nbsp;ctrl,&nbsp;num&nbsp;lock)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pressed&nbsp;during&nbsp;this&nbsp;event.&nbsp;See&nbsp;:ref:`keyboard_modifiers`.</tt></dd></dl>
 
 <dl><dt><a name="Solitaire-on_key_release"><strong>on_key_release</strong></a>(self, symbol: int, modifiers: int)</dt><dd><tt>Override&nbsp;this&nbsp;function&nbsp;to&nbsp;add&nbsp;key&nbsp;release&nbsp;functionality.<br>
 &nbsp;<br>
@@ -1028,7 +1022,6 @@ Data descriptors inherited from <a href="pyglet.event.html#EventDispatcher">pygl
 <strong>screen_title</strong> = 'Game_Interface'<br>
 <strong>screen_width</strong> = 1024<br>
 <strong>start_x</strong> = 63.0<br>
-<strong>tableau_offset</strong> = 20<br>
 <strong>top_pile_1</strong> = 9<br>
 <strong>top_pile_2</strong> = 10<br>
 <strong>top_pile_3</strong> = 11<br>
