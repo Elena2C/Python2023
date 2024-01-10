@@ -17,7 +17,6 @@ class Solitaire(arcade.Window):
         self.held_cards_original_position = None
 
         self.foundation_suits = ["hearts", "clubs", "spades", "diamonds"]
-        # Define colors for foundation piles
         self.foundation_colors = {
             "hearts": arcade.color.RED,
             "clubs": arcade.color.BLUE,
@@ -43,19 +42,23 @@ class Solitaire(arcade.Window):
 
         self.pile_mat_list: arcade.SpriteList = arcade.SpriteList()
 
+        # stock pile mat
         pile = arcade.SpriteSolidColor(mat_width, mat_height, arcade.csscolor.DARK_OLIVE_GREEN)
         pile.position = start_x, bottom_y
         self.pile_mat_list.append(pile)
 
+        # waste pile mat
         pile = arcade.SpriteSolidColor(mat_width, mat_height, arcade.csscolor.DARK_OLIVE_GREEN)
         pile.position = start_x + x_spacing, bottom_y
         self.pile_mat_list.append(pile)
 
+        # play piles mats
         for i in range(7):
             pile = arcade.SpriteSolidColor(mat_width, mat_height, arcade.csscolor.DARK_OLIVE_GREEN)
             pile.position = start_x + i * x_spacing, middle_y
             self.pile_mat_list.append(pile)
 
+        # foundation pile mats
         for i in range(4):
             pile = arcade.SpriteSolidColor(mat_width, mat_height, arcade.csscolor.DARK_OLIVE_GREEN)
             pile.position = start_x + i * x_spacing, top_y
@@ -63,22 +66,19 @@ class Solitaire(arcade.Window):
 
         self.card_list = arcade.SpriteList()
 
-        self.piles = [[] for _ in range(pile_count)]
-
-        # Assign colors to foundation piles
+        # Asignarea culorilor fundatiilor
         for pile_index in range(top_pile_1, top_pile_4 + 1):
             mat_color = self.foundation_colors[self.foundation_suits[pile_index - top_pile_1]]
             self.pile_mat_list[pile_index].color = mat_color
 
-        for card in self.card_list:
-            self.piles[bottom_face_down_pile].append(card)
-
+        # crearea unui nou set de carti
         for card_suit in card_suits:
             for card_value in card_values:
                 card = Card(card_suit, card_value)
                 card.position = start_x, bottom_y
                 self.card_list.append(card)
 
+        # amestecarea cartilor
         for pos1 in range(len(self.card_list)):
             pos2 = random.randrange(len(self.card_list))
             self.card_list.swap(pos1, pos2)
@@ -128,15 +128,13 @@ class Solitaire(arcade.Window):
         self.card_list.append(card)
 
     def validate_foundation_pile(self, card, pile_index):
-        # Check if the card suits match the foundation pile's suit
+        # verifica daca tipul cartii se potriveste culorii de pe fundatie
         if card.suit != self.foundation_suits[pile_index - top_pile_1]:
             return False
 
-            # Check if the foundation pile is empty and the card is an Ace
         if len(self.piles[pile_index]) == 0:
             return card.value == "A"
         else:
-            # Check if the card value is the next in sequence
             top_card = self.piles[pile_index][-1]
             return card_values.index(card.value) == card_values.index(top_card.value) + 1
 
@@ -172,11 +170,10 @@ class Solitaire(arcade.Window):
             else:
                 self.show_winning_message = not self.show_winning_message
 
-        # Check if the mouse click is on any card
         clicked_cards = [card for card in self.card_list if card.collides_with_point((x, y))]
 
         if clicked_cards:
-            primary_card = clicked_cards[-1]  # Take the topmost card if multiple cards are clicked
+            primary_card = clicked_cards[-1]
             assert isinstance(primary_card, Card)
 
             pile_index = self.get_pile_for_card(primary_card)
@@ -239,7 +236,7 @@ class Solitaire(arcade.Window):
                         len(self.piles[pile_index]) > 0
                         and card_values.index(self.held_cards[0].value)
                         == card_values.index(self.piles[pile_index][-1].value) - 1
-                        and self.held_cards[0].suit != self.piles[pile_index][-1].suit
+                        #and self.held_cards[0].suit != self.piles[pile_index][-1].suit
                 ):
                     top_card = self.piles[pile_index][-1] if len(self.piles[pile_index]) > 0 else None
                     if (top_card is None or
@@ -291,18 +288,15 @@ class Solitaire(arcade.Window):
             self.draw_winning_message()
 
     def on_close(self):
-        # Release resources when the window is closed
         self.card_list = None
-        self.pile_mat_list = arcade.SpriteList()
+        #self.pile_mat_list = arcade.SpriteList()
         self.held_cards = None
         self.held_cards_original_position = None
 
-        # Dispose textures in card_list
         if self.card_list is not None:
             for card in self.card_list:
                 card.texture.dispose()
 
-        # Dispose textures in pile_mat_list
         if self.pile_mat_list is not None:
             for mat in self.pile_mat_list:
                 mat.texture.dispose()

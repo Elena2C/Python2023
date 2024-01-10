@@ -6,8 +6,6 @@ screen_width = 1024
 screen_height = 768
 screen_title = "Game_Interface"
 
-tableau_offset = 20
-
 card_values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 card_suits = ["hearts", "clubs", "spades", "diamonds"]
 
@@ -25,7 +23,7 @@ horizontal_margin_percent = 0.10
 bottom_y = mat_height / 2 + mat_height * vertical_margin_percent
 start_x = mat_width / 2 + mat_width * horizontal_margin_percent
 
-top_y = screen_height - mat_height / 2 - mat_height * vertical_margin_percent
+top_y = 768 - mat_height / 2 - mat_height * vertical_margin_percent
 
 middle_y = top_y - mat_height - mat_height * vertical_margin_percent
 
@@ -313,7 +311,7 @@ class Solitaire(arcade.Window):
             if self.check_for_win():
                 self.game_won = True
 
-    def restart(self, symbol: int):
+    def on_key_press(self, symbol: int, modifiers: int):
         '''
         Restarteaza jocul
         '''
